@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // This pulls your code from the GitHub repository
+                checkout scm
+            }
+        }
+
+        stage('Display Output') {
+            steps {
+                script {
+                    // Replace 'yourfile.txt' with the actual name of your file
+                    def fileContents = readFile 'hello'
+                    
+                    echo "--- CONTENT OF YOUR TXT FILE START ---"
+                    echo fileContents
+                    echo "--- CONTENT OF YOUR TXT FILE END ---"
+                }
+            }
+        }
+    }
+}
